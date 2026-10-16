@@ -99,3 +99,6 @@ body.modal-open{overflow:hidden}
 @media(max-width:820px){.maprow,.treewrap{grid-template-columns:1fr}#leaflet{height:62vh}.tnote{width:calc(50% - 12px);min-width:150px}.sitelist{max-height:240px}.treestage{min-height:500px}}
 @media(max-width:420px){.tnote{width:100%}}
 .treeintro input[type=checkbox],.mbox input[type=checkbox]{width:auto;margin-right:6px}
+.banned{max-width:420px;margin:10px auto 0;text-align:center;border-color:#b9483c55}
+.banned h3{color:#c0392b;margin:0 0 4px;font-size:15px;letter-spacing:.08em;text-transform:uppercase}
+.banned .bname{color:#d0312d;font-size:44px;font-weight:900;letter-spacing:.06em;line-height:1.1}
