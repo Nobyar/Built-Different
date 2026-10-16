@@ -10,7 +10,7 @@
 <button id="theme" aria-label="Toggle theme">◐</button></header>
 <div id="statusbar" class="statusbar">Loading river conditions…</div>
 <nav role="tablist">
-<button data-tab="map" class="active">Map</button><button data-tab="river">River Conditions</button><button data-tab="weather">Weather</button><button data-tab="fish">Fishing Report</button><button data-tab="tree">The River Tree</button><button data-tab="plan">Plan Your Trip</button></nav>
+<button data-tab="map" class="active">Map</button><button data-tab="river">River Conditions</button><button data-tab="weather">Weather</button><button data-tab="fish">Fishing Report</button><button data-tab="tree">The River Tree</button><button data-tab="plan">Plan Your Trip</button><button data-tab="colin" class="colintab">🚫 Colin Watch</button></nav>
 <main>
 <section id="map" class="tab active">
  <div class="maprow"><div class="mapwrap"><div id="leaflet"></div></div>
@@ -53,8 +53,29 @@
 <section id="weather" class="tab"><div id="alerts"></div><div class="seg" id="wxloc"></div><div id="wx"></div><p class="muted small">Forecast: Open-Meteo (NOAA GFS/HRRR blend). Alerts: NWS api.weather.gov.</p></section>
 <section id="fish" class="tab"><div id="fishreport"></div></section>
 <section id="plan" class="tab"><div id="planbody"></div></section>
+<section id="colin" class="tab">
+ <div class="banned card"><h3>Banned Individuals</h3><div class="bname">COLIN</div></div>
+ <div class="bulletin card">
+  <div class="bhead"><div class="bseal" aria-hidden="true">🥓</div><div><div class="bkicker">Not Park Service · Unofficial Bulletin</div><h2>Colin Sighting Report</h2><div class="small muted">Middle Delaware River Corridor · Issued <span id="cdate2"></span></div></div></div>
+  <div class="parody">⚠️ PARODY — a joke among friends. Not affiliated with, endorsed by, or issued by the National Park Service.</div>
+  <div class="cgrid">
+   <div><h3>Field Checklist</h3><p class="small muted">Tap each item to report. Answers stay on this device.</p><ul id="clist" class="clist"></ul><button class="linkbtn" id="creset">Reset report</button></div>
+   <div class="meterbox"><h3>Colin Encounter Likelihood</h3>
+    <svg viewBox="0 0 200 120" class="meter" aria-hidden="true"><defs><linearGradient id="mg" x1="0" x2="1"><stop offset="0" stop-color="#3f8f5a"/><stop offset=".45" stop-color="#d9b23a"/><stop offset=".75" stop-color="#d9772b"/><stop offset="1" stop-color="#c0392b"/></linearGradient></defs>
+     <path d="M20 105 A80 80 0 0 1 180 105" stroke="var(--line)" stroke-width="18" fill="none" stroke-linecap="round"/>
+     <path id="marc" d="M20 105 A80 80 0 0 1 180 105" stroke="url(#mg)" stroke-width="18" fill="none" stroke-linecap="round" pathLength="100" stroke-dasharray="0 100"/>
+     <g id="needle" style="transform-origin:100px 105px"><line x1="100" y1="105" x2="100" y2="38" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/><circle cx="100" cy="105" r="8" fill="var(--ink)"/></g></svg>
+    <div id="mlevel" class="mlevel">LOW</div><div id="mpct" class="small muted"></div></div>
+  </div>
+ </div>
+ <div class="cols wcards">
+  <div class="card warn"><h3>🥓 Bacon Roamer</h3><p>Colins are known to roam campsites at dawn looking for bacon. Secure all breakfast meats.</p></div>
+  <div class="card warn"><h3>🪓 Wood Avoidance</h3><p>Colins have been observed declining to help chop firewood, often citing "supervision duties."</p></div>
+  <div class="card warn"><h3>💬 "I learned so much"</h3><p>A Colin may approach campers and passersby to share that he "learned so much." <b>But beware!</b></p></div>
+ </div>
+</section>
+
 </main>
-<section class="banned card" aria-label="Banned Individuals"><h3>Banned Individuals</h3><div class="bname">COLIN</div></section>
 <footer>Built Different · Not an official NPS site. Always check <a href="https://www.nps.gov/dewa/planyourvisit/conditions.htm" target="_blank" rel="noopener">NPS current conditions</a> before launching.</footer>
 <div id="cmodal" class="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="mclose" aria-label="Close">×</button><h3>⛺ We've been here</h3><div id="ctitle" class="muted"></div>
 <form id="cform" autocomplete="off"><label>Visit date<input id="cdate" type="date" required></label>

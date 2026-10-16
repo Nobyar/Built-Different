@@ -102,3 +102,20 @@ body.modal-open{overflow:hidden}
 .banned{max-width:420px;margin:10px auto 0;text-align:center;border-color:#b9483c55}
 .banned h3{color:#c0392b;margin:0 0 4px;font-size:15px;letter-spacing:.08em;text-transform:uppercase}
 .banned .bname{color:#d0312d;font-size:44px;font-weight:900;letter-spacing:.06em;line-height:1.1}
+/* Colin Watch (parody) */
+nav button.colintab.active{background:#c0392b;border-color:#c0392b}
+#colin .banned{margin:6px auto 14px}
+.bulletin{border-top:6px solid #5b412b;max-width:980px;margin:0 auto}
+.bhead{display:flex;gap:14px;align-items:center}.bhead h2{margin:2px 0}
+.bseal{width:56px;height:56px;border-radius:50%;background:#5b412b;display:grid;place-items:center;font-size:28px;flex:none;border:3px double #d9b98d}
+.bkicker{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.parody{margin:12px 0;padding:8px 12px;border-radius:10px;background:#d9b23a22;border:1px dashed #b8902a;font-size:13px;font-weight:600}
+.cgrid{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;align-items:start}
+.clist{list-style:none;padding:0;margin:0}.clist li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.yn{min-width:62px;padding:8px 10px;border-radius:999px;border:0;font-weight:800;cursor:pointer;transition:.2s;color:#fff}.yn.no{background:#7c8e8c}.yn.yes{background:#c0392b;transform:scale(1.05)}
+.meterbox{text-align:center}.meter{width:100%;max-width:300px}
+#marc{transition:stroke-dasharray .8s cubic-bezier(.3,1.4,.5,1)}#needle{transition:transform .8s cubic-bezier(.3,1.4,.5,1)}
+.mlevel{font-size:26px;font-weight:900;letter-spacing:.06em;margin-top:4px}.mlevel.low{color:#3f8f5a}.mlevel.elev{color:#b8902a}.mlevel.high{color:#d9772b}
+.mlevel.imm{color:#c0392b;animation:pulse 1s ease-in-out infinite}@keyframes pulse{50%{transform:scale(1.08)}}
+.wcards{max-width:980px;margin:14px auto 0}.warn{border-left:5px solid #c0392b}.warn h3{color:#c0392b}
+@media(max-width:820px){.cgrid{grid-template-columns:1fr}.bname{font-size:38px}}
