@@ -1,0 +1,70 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Built Different · Delaware River: Milford → Kittatinny Point</title>
+<meta name="description" content="Camp, kayak and fish the Middle Delaware: map, live USGS river data, weather, fishing reports and trip planning.">
+<meta name="theme-color" content="#0e1f26">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<header><div class="brand"><span class="logo">〰</span><div><h1>Built Different</h1><p>Camp · Kayak · Fish — Milford, PA → Kittatinny Point, NJ</p></div></div>
+<button id="theme" aria-label="Toggle theme">◐</button></header>
+<div id="statusbar" class="statusbar">Loading river conditions…</div>
+<nav role="tablist">
+<button data-tab="map" class="active">Map</button><button data-tab="river">River Conditions</button><button data-tab="weather">Weather</button><button data-tab="fish">Fishing Report</button><button data-tab="tree">The River Tree</button><button data-tab="plan">Plan Your Trip</button></nav>
+<main>
+<section id="map" class="tab active">
+ <div class="maprow"><div class="mapwrap"><div id="leaflet"></div></div>
+ <aside class="side">
+  <div class="card"><h3>Find a site</h3><input id="sitesearch" type="search" placeholder="Search e.g. PE-11, Toms Creek, Bushkill…" autocomplete="off">
+   <div class="filt"><label><input type="checkbox" data-t="camp" checked> Campsites</label><label><input type="checkbox" data-t="acc" checked> Access</label><label><input type="checkbox" data-t="fish" checked> Fishing</label><label><input type="checkbox" data-t="visited"> Only visited</label></div>
+   <div class="small muted listhead"><span id="listcount"></span><span id="visitcount"></span> <button class="linkbtn" id="galbtn">Visit gallery</button></div>
+   <ul id="sitelist" class="sitelist"></ul></div>
+  <div class="card"><h3>Float planner</h3><label>Put-in<select id="putin"></select></label><label>Take-out<select id="takeout"></select></label><div id="floatout"></div></div>
+  <div class="card legend"><span><i class="dot camp"></i>River campsite</span><span><i class="dot group"></i>Group / separate reservation</span><span><i class="dot visited"></i>Visited (✓)</span><span><i class="dot acc"></i>Boat access</span><span><i class="dot fish"></i>Fishing spot</span><span><i class="dot gauge"></i>USGS gauge</span><span><i class="rline"></i>Delaware River</span>
+  <p class="muted small">All 62 primitive river campsites (NPS zones 1–5) + 3 group campgrounds. Popups say whether a location is precise or approximate. Site labels appear when zoomed in.</p></div>
+ </aside></div>
+</section>
+<section id="tree" class="tab">
+ <div class="treewrap">
+  <div class="treeintro card"><h2>The River Tree</h2><p class="muted">Hang a note for fellow river rats — a memory, a tip, a thank-you. Everyone who visits sees the tree.</p>
+  <form id="treeform" autocomplete="off">
+   <textarea id="ttext" maxlength="600" rows="4" placeholder="Smallies were hitting tubes below Namanock at dusk…" required></textarea>
+   <div class="row"><span id="tcount" class="small muted">0/600</span></div>
+   <div class="row"><input id="tname" maxlength="40" placeholder="Your name (optional)"><label class="chk"><input type="checkbox" id="tanon"> Post anonymously</label></div>
+   <input id="thp" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+   <label class="photobtn">📷 Add photos<input id="tphotos" type="file" accept="image/*" multiple hidden></label><span class="small muted"> up to 4 · resized automatically</span>
+   <div id="tpreview" class="previews"></div>
+   <button class="btn" id="tsubmit" type="submit">Hang it on the tree</button></form>
+   <p class="small muted">Be kind. Notes are public and not yet moderated — please don't post personal info. You can delete your own notes from this device.</p></div>
+  <div class="treestage"><svg class="treeart" viewBox="0 0 800 900" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+   <defs><linearGradient id="trk" x1="0" x2="1"><stop offset="0" stop-color="var(--trunk1)"/><stop offset="1" stop-color="var(--trunk2)"/></linearGradient>
+   <radialGradient id="can" cx=".5" cy=".45" r=".6"><stop offset="0" stop-color="var(--leaf1)"/><stop offset="1" stop-color="var(--leaf2)"/></radialGradient></defs>
+   <g opacity=".9"><ellipse cx="400" cy="300" rx="380" ry="270" fill="url(#can)"/><ellipse cx="190" cy="360" rx="190" ry="150" fill="url(#can)" opacity=".8"/><ellipse cx="610" cy="350" rx="190" ry="160" fill="url(#can)" opacity=".8"/><ellipse cx="400" cy="140" rx="240" ry="130" fill="url(#can)" opacity=".75"/></g>
+   <path d="M370 900 C380 760 360 640 390 520 C330 470 250 440 150 430 M395 600 C470 520 560 480 660 470 M388 470 C380 380 330 300 260 250 M398 540 C430 420 480 330 560 280 M392 430 C400 330 405 250 400 160" stroke="url(#trk)" stroke-width="16" fill="none" stroke-linecap="round"/>
+   <path d="M340 900 C360 780 345 640 375 520 L420 520 C440 650 430 780 460 900 Z" fill="url(#trk)"/>
+   <path d="M0 880 Q200 850 400 875 T800 870 L800 900 L0 900Z" fill="var(--ground)"/>
+   <path d="M0 893 Q200 880 400 892 T800 888" stroke="var(--acc)" stroke-width="3" fill="none" opacity=".6"/>
+  </svg>
+  <div id="tcountall" class="tcountall small"></div>
+  <div id="treenotes" class="treenotes"></div></div>
+ </div>
+</section>
+<section id="river" class="tab"><div id="gauges" class="grid"></div><p class="muted small">Source: USGS Water Services instantaneous values (provisional data, 15-min). Last 7 days.</p></section>
+<section id="weather" class="tab"><div id="alerts"></div><div class="seg" id="wxloc"></div><div id="wx"></div><p class="muted small">Forecast: Open-Meteo (NOAA GFS/HRRR blend). Alerts: NWS api.weather.gov.</p></section>
+<section id="fish" class="tab"><div id="fishreport"></div></section>
+<section id="plan" class="tab"><div id="planbody"></div></section>
+</main>
+<footer>Built Different · Not an official NPS site. Always check <a href="https://www.nps.gov/dewa/planyourvisit/conditions.htm" target="_blank" rel="noopener">NPS current conditions</a> before launching.</footer>
+<div id="cmodal" class="modal" role="dialog" aria-modal="true"><div class="mbox"><button class="mclose" aria-label="Close">×</button><h3>⛺ We've been here</h3><div id="ctitle" class="muted"></div>
+<form id="cform" autocomplete="off"><label>Visit date<input id="cdate" type="date" required></label>
+<textarea id="ctext" maxlength="600" rows="3" placeholder="Water level, bugs, best tent pad, what was biting… (optional)"></textarea>
+<div class="row"><input id="cname" maxlength="40" placeholder="Your name (optional)"><label class="chk"><input type="checkbox" id="canon"> Anonymous</label></div>
+<input id="chp" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+<label class="photobtn">📷 Photos of the site<input id="cphotos" type="file" accept="image/*" multiple hidden></label><div id="cpreview" class="previews"></div>
+<button class="btn" id="csubmit" type="submit">Save check-in</button></form></div></div>
+<div id="hmodal" class="modal" role="dialog" aria-modal="true"><div class="mbox wide"><button class="mclose" aria-label="Close">×</button><h3 id="htitle"></h3><div id="hbody"></div></div></div>
+<div id="lightbox" class="lightbox"><button class="lbprev" aria-label="Previous">‹</button><img alt=""><button class="lbnext" aria-label="Next">›</button><div class="lbcount"></div></div>
+<div id="toast" class="toast" role="status"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script><script src="bundle.js"></script>
+</body></html>
